@@ -1,0 +1,31 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Client ID:</th>
+        <th scope="col">Name:</th>
+        <th scope="col">ApiKey:</th>
+    </tr>
+    </thead>
+    <tbody hx-target="closest tr">
+    {{ range .Clients }}
+    <tr>
+        <th style="color: dimgray" scope="row">{{ .Id }}</th>
+        <td style="color: dimgray">{{ .Name }}</td>
+        <td style="color: dimgray">{{ .ApiKey }}</td>
+        <td>
+            <button
+                    hx-delete="/api/{{.Id}}"
+                    hx-confirm="Are you sure you wish to delete this client?">
+                remove
+            </button>
+        </td>
+    </tr>
+    {{ end }}
+    <tr>
+        <th scope="row" style="color: green">Online:</th>
+        <td colspan="4">
+            {{ .Connections }}
+        </td>
+    </tr>
+    </tbody>
+</table>
